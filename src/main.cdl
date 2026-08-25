@@ -1,0 +1,24 @@
+import "lumen.cdl";
+
+// Each control mirrors into its signal, so one function rebuilds the status
+// line for every callback below. `signal(name)` is a handle to the named
+// cell: `get` reads the string form, `get_bool` / `get_float` read it typed.
+fn refresh_status() {
+    let name = signal("name").get();
+    let dark = signal("dark").get_bool();
+    let vol = signal("volume").get();
+    let theme = "light";
+    if dark { theme = "dark"; }
+    let line = "Hi " + name + " - theme=" + theme + " volume=" + vol;
+    signal("status").set(line);
+}
+
+fn on_start() {
+    refresh_status();
+}
+
+fn on_text_input(id: string, text: string) { refresh_status(); }
+fn on_toggle(id: string, on: bool) { refresh_status(); }
+fn on_slider(id: string, value: float) { refresh_status(); }
+
+fn main() {}

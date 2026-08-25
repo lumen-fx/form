@@ -1,0 +1,26 @@
+<root bg="#0c1c30" padding="32" gap="18">
+  <label class="title" width="100%" height="44px" text="Profile" />
+
+  <column gap="6">
+    <label class="caption" text="Display name" />
+    <input id="name" class="field" tab-index="0" width="100%" height="40px"
+           placeholder="What should we call you?" bind-text="name" />
+  </column>
+
+  <row gap="12" align="center">
+    <toggle id="dark" class="control" tab-index="1" width="48px" height="28px"
+            bind-checked="dark" />
+    <label class="caption" text="Dark mode" />
+  </row>
+
+  <column gap="6">
+    <label class="caption" text="Volume" />
+    <slider id="volume" class="control" tab-index="2" width="100%" height="28px"
+            min="0" max="1" value="0.5" bind-value="volume" />
+  </column>
+
+  <label class="echo" width="100%" height="40px" bind-text="status"
+         text="(waiting for input...)" />
+
+  <script src="main.cdl" />
+</root>
