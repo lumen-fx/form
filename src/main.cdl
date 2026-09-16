@@ -1,16 +1,17 @@
 import "lumen.cdl";
 
 // Each control mirrors into its signal, so one function rebuilds the status
-// line for every callback below. `signal(name)` is a handle to the named
-// cell: `get` reads the string form, `get_bool` / `get_float` read it typed.
+// line for every callback below. `signal<T>(name)` is a handle to the named
+// cell, and the type argument says what the cell holds: `get` hands back that
+// type and `set` takes it.
 fn refresh_status() {
-    let name = signal("name").get();
-    let dark = signal("dark").get_bool();
-    let vol = signal("volume").get();
+    let name = signal<string>("name").get();
+    let dark = signal<bool>("dark").get();
+    let vol = signal<string>("volume").get();
     let theme = "light";
     if dark { theme = "dark"; }
     let line = "Hi " + name + " - theme=" + theme + " volume=" + vol;
-    signal("status").set(line);
+    signal<string>("status").set(line);
 }
 
 fn on_start() {
